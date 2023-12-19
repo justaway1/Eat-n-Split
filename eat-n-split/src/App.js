@@ -19,11 +19,17 @@ const randomFriends = [
   }
 ]
 
+function Button ({ children }) {
+  return <button className='button'>{children}</button>
+}
+
 export default function App () {
   return (
     <div className='app'>
       <div className='sidebar'>
         <FriendList />
+        <FormAddFriend />
+        <Button>Add Friend</Button>
       </div>
     </div>
   )
@@ -56,7 +62,19 @@ function Friend ({ friend }) {
           ? `You and ${friend.name} are even`
           : `${friend.name} owes you ${friend.balance}$`}
       </p>
-      <button className='button'>Select</button>
+      <Button>Select</Button>
     </li>
   )
 }
+
+function FormAddFriend () {
+  return (
+    <form className='form-add-friend'>
+      <label>Friend Name</label>
+      <input type='text' />
+      <Button>Add</Button>
+    </form>
+  )
+}
+
+funct
