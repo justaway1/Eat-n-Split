@@ -50,7 +50,11 @@ export default function App () {
   return (
     <div className='app'>
       <div className='sidebar'>
-        <FriendList friends={friends} onHandleSelect={handleSelect} />
+        <FriendList
+          friends={friends}
+          onHandleSelect={handleSelect}
+          selectedFriend={selectedFriend}
+        />
         {IsOpen && <FormAddFriend onAddFriend={addRandomFriend} />}
         <Button onClick={showFriends}>{IsOpen ? 'Close' : 'Add Friend'}</Button>
       </div>
@@ -59,7 +63,7 @@ export default function App () {
   )
 }
 
-function FriendList ({ friends, onHandleSelect }) {
+function FriendList ({ friends, onHandleSelect, selectedFriend }) {
   return (
     <ul>
       {friends.map(friend => {
@@ -68,6 +72,7 @@ function FriendList ({ friends, onHandleSelect }) {
             friend={friend}
             key={friend.id}
             onHandleSelect={onHandleSelect}
+            selectedFriend={selectedFriend}
           />
         )
       })}
@@ -75,9 +80,10 @@ function FriendList ({ friends, onHandleSelect }) {
   )
 }
 
-function Friend ({ friend, onHandleSelect }) {
+function Friend ({ friend, onHandleSelect, selectedFriend }) {
+  const isSelected = selectedFriend?.id === friend.id
   return (
-    <li>
+    <li className={isSelected ? 'selected' : ''}>
       <img src={friend.img} alt={friend.name} />
       <h3>{friend.name}</h3>
       <p
@@ -101,6 +107,8 @@ function FormAddFriend ({ onAddFriend }) {
   const rndImage = Math.floor(Math.random() * 933372)
   function handleSubmit (e) {
     e.preventDefault()
+
+    if (!name) return
 
     const newFriend = {
       id: new Date().getTime(),
