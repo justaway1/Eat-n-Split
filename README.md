@@ -1,10 +1,10 @@
-# Eat-n-Split
+# Split Bill
 
 ## Description
-This is an application for food sharing among a group of people, where you can...
+This application helps in splitting bills among a group of people and updates the UI accordingly.
 
 ## Live Preview
-You can see the live preview of this application [here](https://justaway1.github.io/Eat-n-Split/).
+You can experience the live version of this application [here](https://justaway1.github.io/Eat-n-Split/).
 
 ## Installation
 1. Clone the repository: 
