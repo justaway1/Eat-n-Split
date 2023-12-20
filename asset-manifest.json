@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/justaway1/Eat-n-Split/tree/main/eat-n-split/static/css/main.f38a3276.css",
+    "main.js": "/justaway1/Eat-n-Split/tree/main/eat-n-split/static/js/main.3e2d87e8.js",
+    "index.html": "/justaway1/Eat-n-Split/tree/main/eat-n-split/index.html",
+    "main.f38a3276.css.map": "/justaway1/Eat-n-Split/tree/main/eat-n-split/static/css/main.f38a3276.css.map",
+    "main.3e2d87e8.js.map": "/justaway1/Eat-n-Split/tree/main/eat-n-split/static/js/main.3e2d87e8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f38a3276.css",
+    "static/js/main.3e2d87e8.js"
+  ]
+}
