@@ -31,16 +31,22 @@ function Button ({ children, onClick }) {
 
 export default function App () {
   const [IsOpen, setIsOpen] = useState(false)
+  const [friends, setFriends] = useState(randomFriends)
 
   function showFriends () {
     setIsOpen(show => !show)
   }
 
+  function addRandomFriend (newFriend) {
+    setFriends(friends => [...friends, newFriend])
+    setIsOpen(false)
+  }
+
   return (
     <div className='app'>
       <div className='sidebar'>
-        <FriendList />
-        {IsOpen && <FormAddFriend />}
+        <FriendList friends={friends} />
+        {IsOpen && <FormAddFriend onAddFriend={addRandomFriend} />}
         <Button onClick={showFriends}>{IsOpen ? 'Close' : 'Add Friend'}</Button>
       </div>
       <FormSplitBill />
@@ -48,11 +54,10 @@ export default function App () {
   )
 }
 
-function FriendList () {
-  const friendList = randomFriends
+function FriendList ({ friends }) {
   return (
     <ul>
-      {friendList.map(friend => {
+      {friends.map(friend => {
         return <Friend friend={friend} key={friend.id} />
       })}
     </ul>
@@ -80,11 +85,26 @@ function Friend ({ friend }) {
   )
 }
 
-function FormAddFriend () {
+function FormAddFriend ({ onAddFriend }) {
+  const [name, setName] = useState('')
+  const rndImage = Math.floor(Math.random() * 933372)
+  function handleSubmit (e) {
+    e.preventDefault()
+
+    const newFriend = {
+      id: new Date().getTime(),
+      name,
+      img: `https://i.pravatar.cc/48?u=${rndImage}`,
+      balance: 0
+    }
+    onAddFriend(newFriend)
+    setName('')
+  }
+
   return (
-    <form className='form-add-friend'>
+    <form className='form-add-friend' onSubmit={handleSubmit}>
       <label>Friend Name</label>
-      <input type='text' />
+      <input type='text' value={name} onChange={e => setName(e.target.value)} />
       <Button>Add</Button>
     </form>
   )
